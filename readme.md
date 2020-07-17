@@ -13,8 +13,8 @@
 
 Installing this dependency via
 
-- `$ npm install @wartoshika/wow-declarations@1.13.3-release.1` (npm repository installation)
-- `$ npm install wartoshika/wow-declarations#v1.13.3-release.1` (github repository installation)
+- `$ npm install @wartoshika/wow-classic-declarations@1.13.3-release.1` (npm repository installation)
+- `$ npm install wartoshika/wow-classic-declarations#v1.13.3-release.1` (github repository installation)
 
 > I strongly recommend to use a version tag when using github based install. Referencing the master branch can result in installing a breaking change. Github based installations need a prefixing `v` in the version number!
 
