@@ -1,6 +1,8 @@
 [![npm version](https://badge.fury.io/js/%40wartoshika%2Fwow-classic-declarations.svg)](https://badge.fury.io/js/%40wartoshika%2Fwow-classic-declarations)
 [![Build Status](https://travis-ci.org/wartoshika/wow-classic-declarations.svg?branch=master)](https://travis-ci.org/wartoshika/wow-classic-declarations)
 
+> I am currently working on a program able to generate the WoW declaration files. This should resolve the problem of missing functions and out of date versions. I will update the declaration files for retail and classic as soon as the program works as expected. In addition PTR and BETA documentation could be available. **Take a look at the retail declarations for the Shadowland update**
+
 # Typescript declarations for the current live World of Warcraft LUA API
 
 > WoW Retail developers should use the [wow-declarations](https://github.com/wartoshika/wow-declarations) repository.
