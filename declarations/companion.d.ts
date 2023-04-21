@@ -1,9 +1,7 @@
 /** @noSelfInFile */
 
-declare namespace WoWAPI {
-    type CompanionType = "CRITTER" | "MOUNT";
-    type MountType = 0x1 | 0x2 | 0x4 | 0x8 | 0x10;
-}
+declare type WowCompanionType = "CRITTER" | "MOUNT";
+declare type WowMointType = 0x1 | 0x2 | 0x4 | 0x8 | 0x10;
 
 /**
  * Summons the specified companion
@@ -12,7 +10,7 @@ declare namespace WoWAPI {
  * @see https://wow.gamepedia.com/API_CallCompanion
  * @since 3.0.2
  */
-declare function CallCompanion(type: WoWAPI.CompanionType, companionIndex: number): void;
+declare function CallCompanion(type: WowCompanionType, companionIndex: number): void;
 
 /**
  * Dismisses a currently-summoned mount or non-combat pet
@@ -20,7 +18,7 @@ declare function CallCompanion(type: WoWAPI.CompanionType, companionIndex: numbe
  * @see https://wow.gamepedia.com/API_DismissCompanion
  * @since 3.0.2
  */
-declare function DismissCompanion(type: WoWAPI.CompanionType): void;
+declare function DismissCompanion(type: WowCompanionType): void;
 
 /**
  * Returns information about the companions you have
@@ -43,8 +41,7 @@ declare function DismissCompanion(type: WoWAPI.CompanionType): void;
  * @since 3.0.2
  * @tupleReturn
  */
-// tslint:disable-next-line max-line-length
-declare function GetCompanionInfo(type: WoWAPI.CompanionType, companionIndex: number): [number, string, number, WoWAPI.TexturePath, WoWAPI.Flag, WoWAPI.MountType];
+declare function GetCompanionInfo(type: WowCompanionType, companionIndex: number): LuaMultiReturn<[number, string, number, WowTexturePath, WowFlag, WowMointType]>;
 
 /**
  * Returns the number of companions you have
@@ -53,7 +50,7 @@ declare function GetCompanionInfo(type: WoWAPI.CompanionType, companionIndex: nu
  * @see https://wow.gamepedia.com/API_GetNumCompanions
  * @since 3.0.2
  */
-declare function GetNumCompanions(type: WoWAPI.CompanionType): number;
+declare function GetNumCompanions(type: WowCompanionType): number;
 
 /**
  * Places a companion onto the mouse cursor
@@ -63,7 +60,7 @@ declare function GetNumCompanions(type: WoWAPI.CompanionType): number;
  * @see https://wow.gamepedia.com/API_PickupCompanion
  * @since 3.0.2
  */
-declare function PickupCompanion(type: WoWAPI.CompanionType, companionIndex: number): void;
+declare function PickupCompanion(type: WowCompanionType, companionIndex: number): void;
 
 /**
  * Summons a random non-combat pet companion

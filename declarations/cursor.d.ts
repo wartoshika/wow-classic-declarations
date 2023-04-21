@@ -1,8 +1,6 @@
 /** @noSelfInFile */
 
-declare namespace WoWAPI {
-    type CursorInfoType = "item" | "spell" | "macro" | "mount" | "money" | "merchant" | "battlepet";
-}
+declare type WowCursorInfoType = "item" | "spell" | "macro" | "mount" | "money" | "merchant" | "battlepet";
 
 /**
  * Automatically equips the item currently held on the cursor
@@ -22,7 +20,7 @@ declare function ClearCursor(): void;
  * @returns 1 if the thing currently on the cursor can go into the specified slot, nil otherwise
  * @see https://wow.gamepedia.com/API_CursorCanGoInSlot
  */
-declare function CursorCanGoInSlot(inventorySlot: WoWAPI.INVENTORY_SLOT_ID): WoWAPI.Flag;
+declare function CursorCanGoInSlot(inventorySlot: WOW_INVENTORY_SLOT_ID): WowFlag;
 
 /**
  * Returns 1 if the cursor currently holds an item, nil otherwise
@@ -58,21 +56,21 @@ declare function DropCursorMoney(): void;
  * @param unit Unit to which you want to give the item on the cursor
  * @see https://wow.gamepedia.com/API_DropItemOnUnit
  */
-declare function DropItemOnUnit(unit: WoWAPI.UnitId): void;
+declare function DropItemOnUnit(unit: WowUnitId): void;
 
 /**
  * Equips the currently picked up item to a specific inventory slot
  * @param inventorySlot The slot ID to place the item into. Use GetInventorySlotInfo(slotname) to resolve an inventory slot name to its ID
  * @see https://wow.gamepedia.com/API_EquipCursorItem
  */
-declare function EquipCursorItem(inventorySlot: WoWAPI.INVENTORY_SLOT_ID): void;
+declare function EquipCursorItem(inventorySlot: WOW_INVENTORY_SLOT_ID): void;
 
 /**
  * Returns information about what the mouse cursor is holding
  * @see https://wow.gamepedia.com/API_GetCursorInfo
  * @tupleReturn
  */
-declare function GetCursorInfo(): [WoWAPI.CursorInfoType, ...WoWAPI.Unknown[]];
+declare function GetCursorInfo(): LuaMultiReturn<[WowCursorInfoType, ...WowUnknown[]]>;
 
 /**
  * @returns **item**
@@ -80,7 +78,7 @@ declare function GetCursorInfo(): [WoWAPI.CursorInfoType, ...WoWAPI.Unknown[]];
  * - **itemLink**: ItemLink of the item on the cursor
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["item", number, WoWAPI.ItemLink];
+declare function GetCursorInfo(): LuaMultiReturn<["item", number, WowItemLink]>;
 
 /**
  * @returns **spell**
@@ -89,21 +87,21 @@ declare function GetCursorInfo(): ["item", number, WoWAPI.ItemLink];
  * - **spellId**: Spell ID of the spell on the cursor
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["spell", number, string, number];
+declare function GetCursorInfo(): LuaMultiReturn<["spell", number, string, number]>;
 
 /**
  * @returns **macro**
  * - **index**: The index of the macro on the cursor
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["macro", number];
+declare function GetCursorInfo(): LuaMultiReturn<["macro", number]>;
 
 /**
  * @returns **money**
  * - **amount**: The amount of money in copper
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["money", number];
+declare function GetCursorInfo(): LuaMultiReturn<["money", number]>;
 
 /**
  * @returns **mount**
@@ -111,21 +109,21 @@ declare function GetCursorInfo(): ["money", number];
  * - **C_MountJournal index**: index in the C_MountJournal (used by C_MountJournal API functions). These indexes varies with game locale
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["mount", number, number];
+declare function GetCursorInfo(): LuaMultiReturn<["mount", number, number]>;
 
 /**
  * @returns **merchant**
  * - **index**: The index of the merchant item
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["merchant", number];
+declare function GetCursorInfo(): LuaMultiReturn<["merchant", number]>;
 
 /**
  * @returns **battlepet**
  * - **petGUID**: GUID of a battle pet in your collection
  * @tupleReturn
  */
-declare function GetCursorInfo(): ["battlepet", WoWAPI.Guid];
+declare function GetCursorInfo(): LuaMultiReturn<["battlepet", WowGuid]>;
 
 /**
  * Returns the amount of copper held on the cursor
@@ -145,7 +143,7 @@ declare function GetCursorMoney(): number;
  * @see https://wow.gamepedia.com/API_GetCursorPosition
  * @tupleReturn
  */
-declare function GetCursorPosition(): [number, number];
+declare function GetCursorPosition(): LuaMultiReturn<[number, number]>;
 
 /**
  * Takes the cursor out of repair mode
@@ -178,7 +176,7 @@ declare function PickupAction(actionSlot: ActionBarSlotId): void;
  * ContainerIDtoInventoryID(BagID), can help to compute the slot number and bag numbers can be viewed in the InventorySlotID page
  * @see https://wow.gamepedia.com/API_PickupBagFromSlot
  */
-declare function PickupBagFromSlot(inventorySlot: WoWAPI.INVENTORY_SLOT_CONTAINER): void;
+declare function PickupBagFromSlot(inventorySlot: WOW_INVENTORY_SLOT_WOW_CONTAINER): void;
 
 /**
  * Wildcard function usually called when a player left clicks on a slot in their bags. Functionality includes picking up the item from a specific
@@ -201,7 +199,7 @@ declare function PickupBagFromSlot(inventorySlot: WoWAPI.INVENTORY_SLOT_CONTAINE
  * Here is some sample code that illustrates the problem
  * @see https://wow.gamepedia.com/API_PickupContainerItem
  */
-declare function PickupContainerItem(bagId: WoWAPI.CONTAINER_ID, slot: number): void;
+declare function PickupContainerItem(bagId: WOW_CONTAINER_ID, slot: number): void;
 
 /**
  * "Picks up" an item from the player's worn inventory. This appears to be a kind of catch-all "pick up/activate" function
@@ -213,7 +211,7 @@ declare function PickupContainerItem(bagId: WoWAPI.CONTAINER_ID, slot: number): 
  * - If the cursor is in repair or spell-casting mode, it will attempt the action on the slotId
  * - You can use GetInventorySlotInfo to get the slotId
  */
-declare function PickupInventoryItem(inventorySlot: WoWAPI.INVENTORY_SLOT_ID): void;
+declare function PickupInventoryItem(inventorySlot: WOW_INVENTORY_SLOT_ID): void;
 
 /**
  * Place the item on the cursor
@@ -224,7 +222,7 @@ declare function PickupInventoryItem(inventorySlot: WoWAPI.INVENTORY_SLOT_ID): v
  * - **itemLink**: The itemLink, when Shift-Clicking items
  * @see https://wow.gamepedia.com/API_PickupItem
  */
-declare function PickupItem(itemIdentifier: number | string | WoWAPI.ItemLink): void;
+declare function PickupItem(itemIdentifier: number | string | WowItemLink): void;
 
 /**
  * Pick up a macro from the macro frame and place it on the cursor
@@ -322,14 +320,14 @@ declare function ResetCursor(): void;
  * the player is currently pointing at. If called with an invalid argument, the cursor is replaced by a black square
  * @see https://wow.gamepedia.com/API_SetCursor
  */
-declare function SetCursor(cursor: string | WoWAPI.TexturePath | null): boolean;
+declare function SetCursor(cursor: string | WowTexturePath | null): boolean;
 
 /**
  * unknown
  * @param index unknown
  * @param slot unknown
  */
-declare function ShowContainerSellCursor(index: number, slot: number): WoWAPI.Unknown;
+declare function ShowContainerSellCursor(index: number, slot: number): WowUnknown;
 
 /**
  * Change the cursor to the magnifying glass inventory inspection cursor
@@ -341,7 +339,7 @@ declare function ShowInspectCursor(): void;
  * unknown
  * @param args unknown
  */
-declare function ShowInventorySellCursor(...args: WoWAPI.Unknown[]): WoWAPI.Unknown;
+declare function ShowInventorySellCursor(...args: WowUnknown[]): WowUnknown;
 
 /**
  * Puts the cursor in repair mode
@@ -359,4 +357,4 @@ declare function ShowRepairCursor(): void;
  * will pick up nothing
  * @see https://wow.gamepedia.com/API_SplitContainerItem
  */
-declare function SplitContainerItem(bagId: WoWAPI.CONTAINER_ID, slot: number, count: number): void;
+declare function SplitContainerItem(bagId: WOW_CONTAINER_ID, slot: number, count: number): void;

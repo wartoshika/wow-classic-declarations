@@ -1,9 +1,7 @@
 /** @noSelfInFile */
 
-declare namespace WoWAPI {
-    type CurrentBindingWhich = 1 | 2;
-    type BindingSetType = 0 | CurrentBindingWhich;
-}
+declare type WowCurrentBindingWhich = 1 | 2;
+declare type WowBindingSetType = 0 | WowCurrentBindingWhich;
 
 /**
  * Returns the command name and all keys currently bound to the specified binding
@@ -12,7 +10,7 @@ declare namespace WoWAPI {
  * @see https://wow.gamepedia.com/API_GetBinding
  * @tupleReturn
  */
-declare function GetBinding(bindingIndex: number, mode?: WoWAPI.Unknown): [string, string, string];
+declare function GetBinding(bindingIndex: number, mode?: WowUnknown): LuaMultiReturn<[string, string, string]>;
 
 /**
  * Returns the name of the action performed by the specified binding
@@ -31,7 +29,7 @@ declare function GetBindingAction(binding: string, checkOverride?: boolean): str
  * @see https://wow.gamepedia.com/API_GetBindingKey
  * @tupleReturn
  */
-declare function GetBindingKey(command: string): [...string[]];
+declare function GetBindingKey(command: string): LuaMultiReturn<[...string[]]>;
 
 /**
  * Returns the localized string value for the given key and prefix. Essentially a glorified getglobal() function
@@ -52,7 +50,7 @@ declare function GetBindingText(key: string, prefix: string, abbreviate?: boolea
  * (indicates that per-character bindings are currently active)
  * @see https://wow.gamepedia.com/API_GetCurrentBindingSet
  */
-declare function GetCurrentBindingSet(): WoWAPI.CurrentBindingWhich;
+declare function GetCurrentBindingSet(): WowCurrentBindingWhich;
 
 /**
  * Returns the total number of key bindings listed in the key bindings window. This includes not only actions that can be bound,
@@ -61,7 +59,7 @@ declare function GetCurrentBindingSet(): WoWAPI.CurrentBindingWhich;
  * @returns The total number of key bindings (including headers) listed in the key bindings window.
  * @see https://wow.gamepedia.com/API_GetNumBindings
  */
-declare function GetNumBindings(): WoWAPI.Unknown;
+declare function GetNumBindings(): WowUnknown;
 
 /**
  * Loads a binding set into memory, activating those bindings
@@ -69,7 +67,7 @@ declare function GetNumBindings(): WoWAPI.Unknown;
  * @event UPDATE_BINDINGS
  * @see https://wow.gamepedia.com/API_LoadBindings
  */
-declare function LoadBindings(bindingSet: WoWAPI.BindingSetType): void;
+declare function LoadBindings(bindingSet: WowBindingSetType): void;
 
 /**
  * Executes a key binding as if a key was pressed
@@ -91,7 +89,7 @@ declare function RunBinding(command: string, up?: string): void;
  * @event UPDATE_BINDINGS
  * @see https://wow.gamepedia.com/API_SaveBindings
  */
-declare function SaveBindings(bindingSafeType: WoWAPI.CurrentBindingWhich): void;
+declare function SaveBindings(bindingSafeType: WowCurrentBindingWhich): void;
 
 /**
  * @todo: SetBinding() ...

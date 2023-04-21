@@ -45,7 +45,7 @@ declare function CameraOrSelectOrMoveStart(): void;
  * @see https://wow.gamepedia.com/API_CameraOrSelectOrMoveStop
  * @private PROTECTED
  */
-declare function CameraOrSelectOrMoveStop(stickyFlag?: WoWAPI.Unknown): void;
+declare function CameraOrSelectOrMoveStop(stickyFlag?: WowUnknown): void;
 
 /**
  * Changes the current action button to the one specified in the arguments
@@ -71,7 +71,7 @@ declare function GetActionBarPage(): ActionBarPage;
  * @see https://wow.gamepedia.com/API_GetActionBarToggles
  * @tupleReturn
  */
-declare function GetActionBarToggles(): [boolean, boolean, boolean, boolean];
+declare function GetActionBarToggles(): LuaMultiReturn<[boolean, boolean, boolean, boolean]>;
 
 /**
  * Returns information about the charges of a charge-accumulating player ability
@@ -81,7 +81,7 @@ declare function GetActionBarToggles(): [boolean, boolean, boolean, boolean];
  * @see https://wow.gamepedia.com/API_GetActionCharges
  * @tupleReturn
  */
-declare function GetActionCharges(slotId: ActionBarSlotId): [number, number, number, number, number];
+declare function GetActionCharges(slotId: ActionBarSlotId): LuaMultiReturn<[number, number, number, number, number]>;
 
 /**
  * Retrieves the cooldown data of the action specified
@@ -91,7 +91,7 @@ declare function GetActionCharges(slotId: ActionBarSlotId): [number, number, num
  * @see https://wow.gamepedia.com/API_GetActionCooldown
  * @tupleReturn
  */
-declare function GetActionCooldown(slotId: ActionBarSlotId): [number, number, number, number];
+declare function GetActionCooldown(slotId: ActionBarSlotId): LuaMultiReturn<[number, number, number, number]>;
 
 /**
  * Gets the available count for an action, if applicable
@@ -111,7 +111,7 @@ declare function GetActionCount(slotId: ActionBarSlotId): string | number;
  * @see https://wow.gamepedia.com/API_GetActionInfo
  * @tupleReturn
  */
-declare function GetActionInfo(slotId: ActionBarSlotId): [string, WoWAPI.Unknown, WoWAPI.Unknown];
+declare function GetActionInfo(slotId: ActionBarSlotId): LuaMultiReturn<[string, WowUnknown, WowUnknown]>;
 
 /**
  * Gets the text label for an action
@@ -130,7 +130,7 @@ declare function GetActionText(slotId: ActionBarSlotId): string | null;
  * @returns The texture filepath for the action's icon image. nil, if the slot is empty
  * @see https://wow.gamepedia.com/API_GetActionTexture
  */
-declare function GetActionTexture(slotId: ActionBarSlotId): WoWAPI.TexturePath | null;
+declare function GetActionTexture(slotId: ActionBarSlotId): WowTexturePath | null;
 
 /**
  * Returns the current bonus action bar index
@@ -146,7 +146,7 @@ declare function GetBonusBarOffset(): number;
  * @returns name of the button responsible for the innermost OnClick event. For example, "LeftButton"
  * @see https://wow.gamepedia.com/API_GetMouseButtonClicked
  */
-declare function GetMouseButtonClicked(): WoWAPI.MouseButton;
+declare function GetMouseButtonClicked(): WowMouseButton;
 
 /**
  * Tests if an action slot is occupied
@@ -155,7 +155,7 @@ declare function GetMouseButtonClicked(): WoWAPI.MouseButton;
  * @returns 1, if the slot contains an action. nil, if the slot is empty
  * @see https://wow.gamepedia.com/API_HasAction
  */
-declare function HasAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function HasAction(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Returns whether an action is in range for use
@@ -164,7 +164,7 @@ declare function HasAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
  * @returns nil if the slot has no action, or if the action cannot be used on the current target; 0 if the action is out of range, and 1 otherwise
  * @see https://wow.gamepedia.com/API_IsActionInRange
  */
-declare function IsActionInRange(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function IsActionInRange(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Determine whether action slot is an attack action
@@ -173,7 +173,7 @@ declare function IsActionInRange(slotId: ActionBarSlotId): WoWAPI.Flag | null;
  * @returns nil if the specified slot is not an attack action, or is empty. 1 if the slot is an attack action and should flash red during combat
  * @see https://wow.gamepedia.com/API_IsAttackAction
  */
-declare function IsAttackAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function IsAttackAction(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Determine whether action slot is auto repeating
@@ -182,7 +182,7 @@ declare function IsAttackAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
  * @returns 1 if the action in the slot is currently auto-repeating, nil if it is not auto-repeating or the slot is empty
  * @see https://wow.gamepedia.com/API_IsAutoRepeatAction
  */
-declare function IsAutoRepeatAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function IsAutoRepeatAction(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Determine whether an action is currently executing
@@ -191,7 +191,7 @@ declare function IsAutoRepeatAction(slotId: ActionBarSlotId): WoWAPI.Flag | null
  * @returns 1 if the action in the slot is currently executing, nil otherwise
  * @see https://wow.gamepedia.com/API_IsCurrentAction
  */
-declare function IsCurrentAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function IsCurrentAction(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Tests if the action is linked to a consumable item
@@ -212,7 +212,7 @@ declare function IsConsumableAction(slotId: ActionBarSlotId): boolean;
  * @returns 1 if the specified action is an action that equips a weapon and if the action has been used to equip the current weapon. nil otherwise
  * @see https://wow.gamepedia.com/API_IsEquippedAction
  */
-declare function IsEquippedAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
+declare function IsEquippedAction(slotId: ActionBarSlotId): WowFlag | null;
 
 /**
  * Determine if an action can be used (you have sufficient mana, reagents and the action is not on cooldown).
@@ -222,7 +222,7 @@ declare function IsEquippedAction(slotId: ActionBarSlotId): WoWAPI.Flag | null;
  * @see https://wow.gamepedia.com/API_IsUsableAction
  * @tupleReturn
  */
-declare function IsUsableAction(slotId: ActionBarSlotId): [boolean, boolean];
+declare function IsUsableAction(slotId: ActionBarSlotId): LuaMultiReturn<[boolean, boolean]>;
 
 /**
  * Determine if player has a pet with an action bar.
@@ -230,7 +230,7 @@ declare function IsUsableAction(slotId: ActionBarSlotId): [boolean, boolean];
  * @returns nil if the player has no pet (or the pet has no action bar), 1 if a pet action bar should be shown
  * @see https://wow.gamepedia.com/API_PetHasActionBar
  */
-declare function PetHasActionBar(): WoWAPI.Flag | null;
+declare function PetHasActionBar(): WowFlag | null;
 
 /**
  * Pick up an action for drag-and-drop
@@ -269,7 +269,7 @@ declare function PlaceAction(slotId: ActionBarSlotId): void;
  * @see https://wow.gamepedia.com/API_SetActionBarToggles
  */
 // tslint:disable-next-line max-line-length
-declare function SetActionBarToggles(bottomLeftState: WoWAPI.Flag, bottomRightState: WoWAPI.Flag, sideRightState: WoWAPI.Flag, sideRight2State: WoWAPI.Flag, alwaysShow: WoWAPI.Flag): void;
+declare function SetActionBarToggles(bottomLeftState: WowFlag, bottomRightState: WowFlag, sideRightState: WowFlag, sideRight2State: WowFlag, alwaysShow: WowFlag): void;
 
 /**
  * Begin "Right click" in the 3D game world.
@@ -299,4 +299,4 @@ declare function TurnOrActionStop(): void;
  * of 1, Blizzard produces a Lua error.
  * @private PROTECTED
  */
-declare function UseAction(slot: ActionBarSlotId, checkCursor?: WoWAPI.Flag, onSelf?: WoWAPI.Flag): void;
+declare function UseAction(slot: ActionBarSlotId, checkCursor?: WowFlag, onSelf?: WowFlag): void;

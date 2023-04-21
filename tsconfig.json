@@ -1,17 +1,16 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": false,
-        "preserveConstEnums": true,
-        "target": "es5",
-        "moduleResolution": "node",
-        "typeRoots": [
-            "./node_modules/@types",
-            "./node_modules/@wartoshika/lua-declarations"
-        ]
-    },
-    "include": [
-        "declarations/**/*.d.ts"
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "target": "es5",
+    "moduleResolution": "node",
+    "types": ["typescript-to-lua/language-extensions"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@wartoshika/lua-declarations"
     ]
+  },
+  "include": ["declarations/**/*.d.ts"]
 }

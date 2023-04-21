@@ -6,14 +6,14 @@
  * @param command The console command to execute
  * @see https://wow.gamepedia.com/API_ConsoleExec
  */
-declare function ConsoleExec(command: string): WoWAPI.Unknown;
+declare function ConsoleExec(command: string): WowUnknown;
 
 /**
  * Attempts to detect the world of warcraft MMO mouse.
  *
  * @see https://wow.gamepedia.com/API_DetectWowMouse
  */
-declare function DetectWowMouse(): WoWAPI.Unknown;
+declare function DetectWowMouse(): WowUnknown;
 
 /**
  * Returns information about current client build
@@ -22,7 +22,7 @@ declare function DetectWowMouse(): WoWAPI.Unknown;
  * @see https://wow.gamepedia.com/API_GetBuildInfo
  * @tupleReturn
  */
-declare function GetBuildInfo(): [string, string, string, number];
+declare function GetBuildInfo(): LuaMultiReturn<[string, string, string, number]>;
 
 /**
  * Returns the currently set error handler
@@ -47,7 +47,7 @@ declare function GetFramerate(): number;
  * @see https://wow.gamepedia.com/API_GetGameTime
  * @tupleReturn
  */
-declare function GetGameTime(): [number, number];
+declare function GetGameTime(): LuaMultiReturn<[number, number]>;
 
 /**
  * Returns the system uptime of your computer in seconds, with millisecond

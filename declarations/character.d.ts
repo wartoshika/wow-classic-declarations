@@ -1,10 +1,8 @@
 /** @noSelfInFile */
 
-declare namespace WoWAPI {
-    type CharacterTotemElementType = 1 | 2 | 3 | 4;
-    type CharacterRestState = 0 | 1;
-    type CharacterDeathkightRuneType = 0 | 1 | 2 | 3 | 4 | 5 | 6;
-}
+declare type WowCharacterTotemElementType = 1 | 2 | 3 | 4;
+declare type WowCharacterRestState = 0 | 1;
+declare type WowCharacterDeathkightRuneType = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 /**
  * Accepts a resurrection, returning the character to life
@@ -35,7 +33,7 @@ declare function DeclineResurrect(): void;
  * @deprecated
  * @see https://wow.gamepedia.com/API_DestroyTotem
  */
-declare function DestroyTotem(slot: WoWAPI.CharacterTotemElementType): void;
+declare function DestroyTotem(slot: WowCharacterTotemElementType): void;
 
 /**
  * Finds the subzone the player's Hearthstone is set to
@@ -52,7 +50,7 @@ declare function GetBindLocation(): string;
  * will return 0 if target is friendly or not found. Use UnitPower(unitId, 4) to get combo points without an enemy targeted
  * @see https://wow.gamepedia.com/API_GetComboPoints
  */
-declare function GetComboPoints(unitId: WoWAPI.UnitId, target: WoWAPI.UnitId): number;
+declare function GetComboPoints(unitId: WowUnitId, target: WowUnitId): number;
 
 /**
  * Returns the integer of the title currently selected by the player
@@ -67,7 +65,9 @@ declare function GetCurrentTitle(): number;
  * @see https://wow.gamepedia.com/API_GetMirrorTimerInfo
  * @tupleReturn
  */
-declare function GetMirrorTimerInfo(timerIndex: number): [string, number, number, number, WoWAPI.Flag, string];
+declare function GetMirrorTimerInfo(
+  timerIndex: number
+): LuaMultiReturn<[string, number, number, number, WowFlag, string]>;
 
 /**
  * Returns the current value of a mirror timer (fatigue, breath, feign death etc).
@@ -76,7 +76,7 @@ declare function GetMirrorTimerInfo(timerIndex: number): [string, number, number
  * @returns current value of the timer. If the timer is not active, 0 is returned
  * @see https://wow.gamepedia.com/API_GetMirrorTimerProgress
  */
-declare function GetMirrorTimerProgress(timerIndex: number): number;
+declare function GetMirrorTimerProgress(timerIndex: string): number;
 
 /**
  * Returns an integer value of your held money
@@ -97,7 +97,7 @@ declare function GetNumTitles(): number;
  * @returns 1 if the player has selected to be PvP flagged, 0 otherwise
  * @see https://wow.gamepedia.com/API_GetPVPDesired
  */
-declare function GetPVPDesired(): WoWAPI.Flag;
+declare function GetPVPDesired(): WowFlag;
 
 /**
  * retrieve the ranged crit chance as a two-decimal float
@@ -111,7 +111,7 @@ declare function GetRangedCritChance(): number;
  * @see https://wow.gamepedia.com/API_GetRestState
  * @tupleReturn
  */
-declare function GetRestState(): [WoWAPI.CharacterRestState, string, number];
+declare function GetRestState(): LuaMultiReturn<[WowCharacterRestState, string, number]>;
 
 /**
  * Gets the cooldown information about a Death Knight's Rune
@@ -119,7 +119,9 @@ declare function GetRestState(): [WoWAPI.CharacterRestState, string, number];
  * @see https://wow.gamepedia.com/API_GetRuneCooldown
  * @tupleReturn
  */
-declare function GetRuneCooldown(runeId: WoWAPI.CharacterDeathkightRuneType): [number, number, boolean];
+declare function GetRuneCooldown(
+  runeId: WowCharacterDeathkightRuneType
+): LuaMultiReturn<[number, number, boolean]>;
 
 /**
  * Gets the name of the title associated with a title index
@@ -128,7 +130,7 @@ declare function GetRuneCooldown(runeId: WoWAPI.CharacterDeathkightRuneType): [n
  * @see https://wow.gamepedia.com/API_GetTitleName
  * @tupleReturn
  */
-declare function GetTitleName(titleId: number): [string, boolean];
+declare function GetTitleName(titleId: number): LuaMultiReturn<[string, boolean]>;
 
 /**
  * Returns the number of XP gained from killing mobs until "player" goes from rest state to normal state

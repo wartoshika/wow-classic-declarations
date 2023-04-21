@@ -8,7 +8,7 @@
  * @returns 1 if the current path is secure (and able to call protected functions), nil otherwise.
  * @see https://wow.gamepedia.com/API_issecure
  */
-declare function issecure(): WoWAPI.Flag;
+declare function issecure(): WowFlag;
 
 /**
  * Taints the current execution path.
@@ -27,7 +27,7 @@ declare function forceinsecure(): void;
  * @see https://wow.gamepedia.com/API_issecurevariable
  * @tupleReturn
  */
-declare function issecurevariable(table?: object, variableName?: string): [boolean, string];
+declare function issecurevariable(table?: object, variableName?: string): LuaMultiReturn<[boolean, string]>;
 
 /**
  * Calls the specified function without propagating taint to the caller

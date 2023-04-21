@@ -1,10 +1,8 @@
 /** @noSelfInFile */
 
-declare namespace WoWAPI {
-    type BuffFilterType = "HELPFUL" | "HARMFUL" | "PLAYER" | "RAID" | "CANCELABLE" | "NOT_CANCELABLE";
-    type BuffWeaponHandType = 1 | 2;
-    type DebuffType = "Magic" | "Disease" | "Poison" | "Curse" | "";
-}
+declare type WowBuffFilterType = "HELPFUL" | "HARMFUL" | "PLAYER" | "RAID" | "CANCELABLE" | "NOT_CANCELABLE";
+declare type WowBuffWeaponHandType = 1 | 2;
+declare type WowDebuffType = "Magic" | "Disease" | "Poison" | "Curse" | "";
 
 /**
  * Removes a specific buff from the unit
@@ -14,7 +12,7 @@ declare namespace WoWAPI {
  * @requires NO_COMBAT
  * @see https://wow.gamepedia.com/API_CancelUnitBuff
  */
-declare function CancelUnitBuff(unitId: WoWAPI.UnitId, spellName: string, spellRank?: string): void;
+declare function CancelUnitBuff(unitId: WowUnitId, spellName: string, spellRank?: string): void;
 
 /**
  * Removes a specific buff from the unit
@@ -24,7 +22,7 @@ declare function CancelUnitBuff(unitId: WoWAPI.UnitId, spellName: string, spellR
  * @requires NO_COMBAT
  * @see https://wow.gamepedia.com/API_CancelUnitBuff
  */
-declare function CancelUnitBuff(unitId: WoWAPI.UnitId, buffIndex: number, filter?: WoWAPI.BuffFilterType & string): void;
+declare function CancelUnitBuff(unitId: WowUnitId, buffIndex: number, filter?: WowBuffFilterType & string): void;
 
 /**
  * Cancels a druid's shapeshift buff
@@ -41,14 +39,14 @@ declare function CancelShapeshiftForm(): void;
  * @protected
  * @see https://wow.gamepedia.com/API_CancelItemTempEnchantment
  */
-declare function CancelItemTempEnchantment(weaponHand: WoWAPI.BuffWeaponHandType): void;
+declare function CancelItemTempEnchantment(weaponHand: WowBuffWeaponHandType): void;
 
 /**
  * Returns information about the player's current temporary enchants, such as fishing lures or sharpening stones and weightstones produced by blacksmiths
  * @see https://wow.gamepedia.com/API_GetWeaponEnchantInfo
  * @tupleReturn
  */
-declare function GetWeaponEnchantInfo(): [boolean, number, number, number, boolean, number, number, number];
+declare function GetWeaponEnchantInfo(): LuaMultiReturn<[boolean, number, number, number, boolean, number, number, number]>;
 
 /**
  * Returns information about a buff or debuff on the specified unit
@@ -59,7 +57,7 @@ declare function GetWeaponEnchantInfo(): [boolean, number, number, number, boole
  * @tupleReturn
  */
 // tslint:disable-next-line max-line-length
-declare function UnitAura(unitId: WoWAPI.UnitId, index: number, filter?: WoWAPI.BuffFilterType & string): [string, WoWAPI.TexturePath, number, WoWAPI.DebuffType, number, number, WoWAPI.UnitId, boolean, boolean, number, boolean, boolean, boolean, boolean, number];
+declare function UnitAura(unitId: WowUnitId, index: number, filter?: WowBuffFilterType & string): LuaMultiReturn<[string, WowTexturePath, number, WowDebuffType, number, number, WowUnitId, boolean, boolean, number, boolean, boolean, boolean, boolean, number]>;
 
 /**
  * Retrieve info about a certain buff on a certain unit
@@ -70,7 +68,7 @@ declare function UnitAura(unitId: WoWAPI.UnitId, index: number, filter?: WoWAPI.
  * @tupleReturn
  */
 // tslint:disable-next-line max-line-length
-declare function UnitBuff(unitId: WoWAPI.UnitId, index: number, filter?: WoWAPI.BuffFilterType & string): [string, WoWAPI.TexturePath, number, WoWAPI.DebuffType, number, number, WoWAPI.UnitId, boolean, boolean, number, boolean, boolean, boolean, number, number, number, number];
+declare function UnitBuff(unitId: WowUnitId, index: number, filter?: WowBuffFilterType & string): LuaMultiReturn<[string, WowTexturePath, number, WowDebuffType, number, number, WowUnitId, boolean, boolean, number, boolean, boolean, boolean, number, number, number, number]>;
 
 /**
  * Retrieve info about a specified debuff on a certain unit
@@ -81,4 +79,4 @@ declare function UnitBuff(unitId: WoWAPI.UnitId, index: number, filter?: WoWAPI.
  * @tupleReturn
  */
 // tslint:disable-next-line max-line-length
-declare function UnitDebuff(unitId: WoWAPI.UnitId, index: number, filter?: WoWAPI.BuffFilterType & string): [string, WoWAPI.TexturePath, number, WoWAPI.DebuffType, number, number, WoWAPI.UnitId, boolean, boolean, number, boolean, boolean, boolean, number, number, number, number];
+declare function UnitDebuff(unitId: WowUnitId, index: number, filter?: WowBuffFilterType & string): LuaMultiReturn<[string, WowTexturePath, number, WowDebuffType, number, number, WowUnitId, boolean, boolean, number, boolean, boolean, boolean, number, number, number, number]>;

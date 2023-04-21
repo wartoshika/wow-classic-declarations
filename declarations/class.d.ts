@@ -12,4 +12,4 @@ declare namespace WoWAPI {
  * @tupleReturn
  * @see https://wow.gamepedia.com/API_GetClassColor
  */
-declare function GetClassColor(englishClass: WoWAPI.CLASSES): [number, number, number, string];
+declare function GetClassColor(englishClass: WoWAPI.CLASSES): LuaMultiReturn<[number, number, number, string]>;

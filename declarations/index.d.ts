@@ -1,7 +1,4 @@
 // global and constants
-import "./constants";
-import "./global";
-
 // A
 import "./account";
 import "./achievement";
@@ -28,6 +25,7 @@ import "./chatWindow";
 import "./class";
 import "./communication";
 import "./companion";
+import "./constants";
 import "./container";
 import "./currency";
 import "./cursor";
@@ -35,6 +33,7 @@ import "./cursor";
 import "./debug";
 // E
 import "./event";
+import "./global";
 // G
 import "./gossip";
 import "./groups";
@@ -50,6 +49,3 @@ import "./ui/tooltip";
 // U
 import "./ui/ui";
 import "./unit";
-
-export = WoWAPI;
-export as namespace WoWAPI;
